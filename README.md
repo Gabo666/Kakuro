@@ -1,0 +1,2 @@
+# Kakuro
+Juego de mesa.
