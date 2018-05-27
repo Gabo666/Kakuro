@@ -267,30 +267,47 @@ def Revisar_String(string):
     if num2=="":
         num2=0
     return int(num1),int(num2)
+
+
+def Revision_final():
+    term=False
+    for pos in Matriz:
+        for pos2 in pos:
+            if pos2==0:
+                term=True
+                break
+            else:
+                term=False
+        if term==True:
+            break
+    if term==False and Error==False:
+        if MultiNivel==True:
+            Change_Multinivel()
+        else:
+            tkinter.messagebox.showinfo("FELICIDADES!","¡EXCELENTE! JUEGO COMPLETADO.")
+
     
 def Terminar():
-    """Función que nos ayuda a confirmar cuando un usuario desea ganar."""
-    global Error
+    global Matriz
+    """Función que elimina el juego y digita otro."""
     conf=tkinter.messagebox.askyesno("Terminar","¿Seguro que desea terminar el juego?")
-    #Revisa que todos los cuadros del tablero esten con algun valor dentro y si hay algún
-    #error que no se ha arreglado.
+    #Si responde si a la pregunta se borra todo.
     if conf==True:
-        term=False
-        for rev in Matriz:
-            for rev2 in rev:
-                if rev2==0:
-                    term=True
-                else:
-                    pass
-        if term==True:
-            tkinter.messagebox.showerror("Error","Falta completar la cuadricula.")
-        else: 
-            if Error==False:
-                tkinter.messagebox.showinfo("FELICIDADES!","¡EXCELENTE! JUEGO COMPLETADO.")
-            else:
-                tkinter.messagebox.showerror("Error","No se ha completado correctamente la cuadricula.")
+        borrar_juego()
     else:
         pass
+    Matriz=[[-2,-2,-2,-2,-2,-2,-2,-2,-2],
+        [-2,-2,-2,-2,-2,-2,-2,-2,-2],
+        [-2,-2,-2,-2,-2,-2,-2,-2,-2],
+        [-2,-2,-2,-2,-2,-2,-2,-2,-2],
+        [-2,-2,-2,-2,-2,-2,-2,-2,-2],
+        [-2,-2,-2,-2,-2,-2,-2,-2,-2],
+        [-2,-2,-2,-2,-2,-2,-2,-2,-2],
+        [-2,-2,-2,-2,-2,-2,-2,-2,-2],
+        [-2,-2,-2,-2,-2,-2,-2,-2,-2]]
+    destruir_botones()
+    crear_botones()
+    cambiar_matriz()
             
 
 
@@ -1673,6 +1690,7 @@ def Click_pantalla(var,fila,columna):
     Change(fila,columna,int(txt))
     #Revisar que las columna y las filas esten sin ningún error.
     Revisar()
+    Revision_final()
 
 def deshacer_jugada():
     if confirmar_jugada==True:
@@ -1871,7 +1889,91 @@ def Cargar():
     #Linea 0 contiene la matriz.
     Matriz=eval(Linea[0])
     colocar()
-    
+
+
+
+def destruir_botones():
+    cuadroA1.destroy()
+    cuadroA2.destroy()
+    cuadroA3.destroy()
+    cuadroA4.destroy()
+    cuadroA5.destroy()
+    cuadroA6.destroy()
+    cuadroA7.destroy()
+    cuadroA8.destroy()
+    cuadroA9.destroy()
+    cuadroB1.destroy()
+    cuadroB2.destroy()
+    cuadroB3.destroy()
+    cuadroB4.destroy()
+    cuadroB5.destroy()
+    cuadroB6.destroy()
+    cuadroB7.destroy()
+    cuadroB8.destroy()
+    cuadroB9.destroy()
+    cuadroC1.destroy()
+    cuadroC2.destroy()
+    cuadroC3.destroy()
+    cuadroC4.destroy()
+    cuadroC5.destroy()
+    cuadroC6.destroy()
+    cuadroC7.destroy()
+    cuadroC8.destroy()
+    cuadroC9.destroy()
+    cuadroD1.destroy()
+    cuadroD2.destroy()
+    cuadroD3.destroy()
+    cuadroD4.destroy()
+    cuadroD5.destroy()
+    cuadroD6.destroy()
+    cuadroD7.destroy()
+    cuadroD8.destroy()
+    cuadroD9.destroy()
+    cuadroE1.destroy()
+    cuadroE2.destroy()
+    cuadroE3.destroy()
+    cuadroE4.destroy()
+    cuadroE5.destroy()
+    cuadroE6.destroy()
+    cuadroE7.destroy()
+    cuadroE8.destroy()
+    cuadroE9.destroy()
+    cuadroF1.destroy()
+    cuadroF2.destroy()
+    cuadroF3.destroy()
+    cuadroF4.destroy()
+    cuadroF5.destroy()
+    cuadroF6.destroy()
+    cuadroF7.destroy()
+    cuadroF8.destroy()
+    cuadroF9.destroy()
+    cuadroG1.destroy()
+    cuadroG2.destroy()
+    cuadroG3.destroy()
+    cuadroG4.destroy()
+    cuadroG5.destroy()
+    cuadroG6.destroy()
+    cuadroG7.destroy()
+    cuadroG8.destroy()
+    cuadroG9.destroy()
+    cuadroH1.destroy()
+    cuadroH2.destroy()
+    cuadroH3.destroy()
+    cuadroH4.destroy()
+    cuadroH5.destroy()
+    cuadroH6.destroy()
+    cuadroH7.destroy()
+    cuadroH8.destroy()
+    cuadroH9.destroy()
+    cuadroI1.destroy()
+    cuadroI2.destroy()
+    cuadroI3.destroy()
+    cuadroI4.destroy()
+    cuadroI5.destroy()
+    cuadroI6.destroy()
+    cuadroI7.destroy()
+    cuadroI8.destroy()
+    cuadroI9.destroy()
     
     
 def kakuro():
@@ -1972,6 +2074,7 @@ def kakuro():
     boton_rehacer=Button(pantalla,text="Rehacer\nJugada",bg="Gray",font=("Arial",13),
                           padx=20,command=rehacer_jugada).place(x=800,y=120)
 
+    crear_botones()
     #Colocar la caja de texto donde el jugador coloca su nombre.
     Nombre=Label(pantalla,text="Nombre del Jugador:",bg="Black",fg="White",
                  font=("Arial",15)).place(x=550,y=410)
@@ -1991,6 +2094,8 @@ def kakuro():
                      font=("Arial",15)).place(x=550,y=450)
 
     #Solamente crear los botones del tablero sin colocarles valores ni posiciones.
+def crear_botones():
+    """Función para crear los botones"""
     global cuadroA1
     cuadroA1=Button(pantalla,bg="Black",fg="White",justify="center")
     global cuadroA2
